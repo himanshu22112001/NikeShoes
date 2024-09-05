@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 2000px; /* Set a height to create scrollable area */
+    }
+    
+    .parallax-container {
+      height: 400px; /* Set the height of the parallax container */
+      overflow: hidden; /* Hide the overflowing content */
+      perspective: 1000px; /* Set the perspective for 3D effect */
+    }
+    
+    .parallax-layer {
+      position: relative;
+      height: 100%;
+      transform-style: preserve-3d; /* Enable 3D transformations */
+    }
+    
+    .parallax-layer img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: auto;
+      height: 100%;
+      transform: translateZ(-0.5px) scale(1.5); /* Apply parallax effect */
+      transition: transform 0.2s ease-out; /* Add smooth transition */
+    }
+  </style>
+  <script>
+    window.addEventListener('scroll', function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var parallaxLayers = document.getElementsByClassName('parallax-layer');
+      
+      for (var i = 0; i < parallaxLayers.length; i++) {
+        var layer = parallaxLayers[i];
+        var speed = layer.getAttribute('data-speed');
+        var transformValue = 'translateZ(' + (scrollTop * speed) + 'px) scale(1.5)';
+        layer.style.transform = transformValue;
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="parallax-container">
+    <div class="parallax-layer" data-speed="0.3">
+      <img src="mountain.jpg" alt="Image 1">
+    </div>
+    <div class="parallax-layer" data-speed="0.5">
+      <img src="man stand.png" alt="Image 2">
+    </div>
+  </div>
+</body>
+</html>
